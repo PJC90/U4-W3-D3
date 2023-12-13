@@ -1,6 +1,7 @@
 package pierpaolo.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "evento")
@@ -11,7 +12,7 @@ public class Evento {
     @Column(name = "titolo")
     private String titolo;
     @Column(name = "data_evento")
-    private String dataEvento;
+    private LocalDate dataEvento;
     private String descrizione;
     @Column(name = "tipo_evento")
     @Enumerated(EnumType.STRING)
@@ -22,7 +23,7 @@ public class Evento {
         //è necessario un costruttore vuoto x permettere a JPA di leggere e creare oggetti
     }
 
-    public Evento(String titolo, String dataEvento, String descrizione, EventoType tipoEvento, int numeroMassimoPartecipanti) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, EventoType tipoEvento, int numeroMassimoPartecipanti) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
@@ -38,11 +39,11 @@ public class Evento {
         this.titolo = titolo;
     }
 
-    public String getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(String dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
 
