@@ -20,9 +20,10 @@ public class Location {
     public Location() {
 
     }
-    public Location(String nome, String città) {
+    public Location(String nome, String città, Evento evento) {
         this.nome = nome;
         this.città = città;
+        this.evento = evento;
     }
 
     public long getId() {

@@ -37,9 +37,14 @@ public class Application {
         //---------------------------------------------------------------------    1 to 1
 //        Evento vm = new Evento("Svelti",LocalDate.of(2023,2,3),"Esaltiamoci",EventoType.PRIVATO,200);
 //        ed.save(vm);
-    Location villaMaiella = new Location("Lions", "Guardiagrele");
-    ld.save(villaMaiella);
 
+        Evento battesimoFromDb = ed.findById(11);
+        System.out.println(battesimoFromDb);
+        Location villaMaiella = new Location("Lions", "Guardiagrele", battesimoFromDb);
+//        ld.save(villaMaiella);
+        Evento cresimaID = ed.findById(12);
+        Location vignale = new Location("Il Vignale", "Rapino", cresimaID);
+//        ld.save(vignale);
 
 
 
