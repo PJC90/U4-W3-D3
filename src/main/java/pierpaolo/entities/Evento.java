@@ -19,6 +19,9 @@ public class Evento {
     private EventoType tipoEvento;
     private int numeroMassimoPartecipanti;
 
+    @OneToOne(mappedBy = "evento")
+    private Location location;
+
     public Evento() {
         //è necessario un costruttore vuoto x permettere a JPA di leggere e creare oggetti
     }
