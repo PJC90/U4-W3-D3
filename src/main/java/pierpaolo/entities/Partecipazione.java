@@ -1,17 +1,32 @@
 package pierpaolo.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "partecipazioni")
 public class Partecipazione {
+    @Id
+    @GeneratedValue
     private long id;
+    @ManyToOne//  una persona può avere più partecipazioni
+    @JoinColumn(name = "partecipante_id")// Join Column identifica dove posizioniamo la chiave esterna
     private Persona persona;
+    @ManyToOne//  un evento può avere più partecipazioni
+    @JoinColumn(name = "evento_id")
     private Evento evento;
+    @Enumerated(EnumType.STRING)
     private StatoType tipoStato;
 
     public Partecipazione() {
     }
-    public Partecipazione(Persona persona, Evento evento, StatoType tipoStato) {
+    public Partecipazione(Persona persona, Evento evento) {
         this.persona = persona;
         this.evento = evento;
-        this.tipoStato = tipoStato;
+        this.tipoStato = StatoType.DA_CONFERMARE;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public Persona getPersona() {

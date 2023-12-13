@@ -53,7 +53,7 @@ public class Location {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", città='" + città + '\'' +
-                ", evento=" + evento +
+
                 '}';
     }
 }

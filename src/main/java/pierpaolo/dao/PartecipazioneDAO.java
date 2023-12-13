@@ -18,7 +18,7 @@ public class PartecipazioneDAO {
         transaction.begin();
         em.persist(partecipazione);
         transaction.commit();
-        System.out.println("Partecipazione di " + partecipazione.getPersona() + " generato!");
+        System.out.println("Partecipazione di " + partecipazione.getPersona().getNome() + " generato!");
     }
 
     public Partecipazione findById(long id){

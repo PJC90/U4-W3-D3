@@ -2,6 +2,7 @@ package pierpaolo.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "evento")
@@ -21,6 +22,8 @@ public class Evento {
 
     @OneToOne(mappedBy = "evento")
     private Location location;
+    @OneToMany(mappedBy = "evento") //classe Partecipazione --->  private Evento evento
+    private List<Partecipazione> listaPartecipanti;
 
     public Evento() {
         //è necessario un costruttore vuoto x permettere a JPA di leggere e creare oggetti
@@ -74,15 +77,29 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Partecipazione> getListaPartecipanti() {
+        return listaPartecipanti;
+    }
+
     @Override
     public String toString() {
         return "Evento{" +
                 "id=" + id +
                 ", titolo='" + titolo + '\'' +
-                ", dataEvento='" + dataEvento + '\'' +
+                ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +
                 ", tipoEvento=" + tipoEvento +
                 ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
+
+
                 '}';
     }
 }

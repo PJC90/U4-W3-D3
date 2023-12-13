@@ -1,35 +1,37 @@
 package pierpaolo.entities;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity
+@Table(name = "persone")
 public class Persona {
+    @Id
+    @GeneratedValue
     private long id;
     private String nome;
     private String cognome;
     private String email;
-    private LocalDate data_di_nascita;
+    private LocalDate dataDiNascita;
     private Sessotype tipoSesso;
-    private Partecipazione partecipazione;
+    @OneToMany(mappedBy = "persona") // nella classe Persona  --->private Persona persona;
+    private List<Partecipazione> listaPartecipazioni;
 
-    public Persona() {
-
-    }
-    public Persona(String nome, String cognome, String email, LocalDate data_di_nascita, Sessotype tipoSesso, Partecipazione partecipazione) {
+    public Persona() {}
+    public Persona(String nome, String cognome, String email, LocalDate dataDiNascita, Sessotype tipoSesso) {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
-        this.data_di_nascita = data_di_nascita;
+        this.dataDiNascita = dataDiNascita;
         this.tipoSesso = tipoSesso;
-        this.partecipazione = partecipazione;
+//        this.listaPartecipazioni = listaPartecipazioni; NON HA SENSO creare una listaPartecipazioni in Persona!!!
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -55,12 +57,12 @@ public class Persona {
         this.email = email;
     }
 
-    public LocalDate getData_di_nascita() {
-        return data_di_nascita;
+    public LocalDate getDataDiNascita() {
+        return dataDiNascita;
     }
 
-    public void setData_di_nascita(LocalDate data_di_nascita) {
-        this.data_di_nascita = data_di_nascita;
+    public void setDataDiNascita(LocalDate dataDiNascita) {
+        this.dataDiNascita = dataDiNascita;
     }
 
     public Sessotype getTipoSesso() {
@@ -71,13 +73,10 @@ public class Persona {
         this.tipoSesso = tipoSesso;
     }
 
-    public Partecipazione getPartecipazione() {
-        return partecipazione;
+    public List<Partecipazione> getListaPartecipazioni() {
+        return listaPartecipazioni;
     }
 
-    public void setPartecipazione(Partecipazione partecipazione) {
-        this.partecipazione = partecipazione;
-    }
 
     @Override
     public String toString() {
@@ -86,9 +85,9 @@ public class Persona {
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
                 ", email='" + email + '\'' +
-                ", data_di_nascita=" + data_di_nascita +
+                ", dataDiNascita=" + dataDiNascita +
                 ", tipoSesso=" + tipoSesso +
-                ", partecipazione=" + partecipazione +
+
                 '}';
     }
 }
